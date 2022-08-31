@@ -146,6 +146,19 @@ function App() {
   else if( mode_pg === "Cpg")
   {
       Header_tit = "WEB"+" > Create";
+      content_area = <Create CreateMode={function(tit_v, txt_v){
+          let nav_ls_val = {id:mode_nav_id, tit:tit_v, txt:txt_v};
+          let nav_ls_new = [...nav_ls];
+          nav_ls_new.push(nav_ls_val);
+          setMode_nav_ls(nav_ls_new);
+          setMode_pg("Spg");
+          setMode_nav(mode_nav_id);
+          setMode_nav_id(mode_nav_id+1);
+      }}></Create>
+  }
+  else if( mode_pg === "Upg")
+  {
+      Header_tit = "WEB"+" > Create";
       for(let i=0; i<nav_ls.length; i++)
       {
           if( nav_ls[i].id === mode_nav )
