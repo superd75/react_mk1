@@ -52,8 +52,6 @@ function Article(props)
 
 function Create(props)
 {
-    let [mode_tit, setMode_tit] = useState(props.tit);
-    let [mode_txt, setMode_txt] = useState(props.txt);
     return(
       <div className ="form_area">
         <form onSubmit={ function(e){
@@ -79,18 +77,18 @@ function Update(props)
       <div className ="form_area">
         <form onSubmit={ function(e){
               e.preventDefault();
-              let tit_v = e.target.tit;
-              let txt_v = e.target.txt;
-              props.CreateMode ( tit_v, txt_v );
+              let tit_v = e.target.tit.value;
+              let txt_v = e.target.txt.value;
+              props.UpdateMode ( tit_v, txt_v );
               
           }}>
           <p><input type="text" name="tit" placeholder="페이지명" value={mode_tit} onChange={ function(e){
-              setMode_tit(e.target.tit.value);
+              setMode_tit(e.target.value);
           }}></input></p>
           <p><textarea name="txt" placeholder="페이지 설명" value={mode_txt} onChange={ function(e){
-              setMode_txt(e.target.txt.value);
+              setMode_txt(e.target.value);
           }}></textarea></p>
-          <p><input type="submit" value="Create" className="btn_submit"></input></p>
+          <p><input type="submit" value="Update" className="btn_submit"></input></p>
         </form>
       </div>
     )
@@ -117,7 +115,10 @@ function App() {
                         setMode_pg("Cpg");
                     }}>Create</a>
 
-
+  let btn_update = <a href='/update/' className='btn' onClick={ function(e){
+                        e.preventDefault();
+                        setMode_pg("Upg");
+                    }}>Update</a>
 
 
 
@@ -140,7 +141,7 @@ function App() {
           }
       }
       btn_area = <div className='btn_area'>
-                    {btn_create}
+                    {btn_create} {btn_update}
                   </div>; 
   }
   else if( mode_pg === "Cpg")
@@ -158,25 +159,24 @@ function App() {
   }
   else if( mode_pg === "Upg")
   {
-      Header_tit = "WEB"+" > Create";
       for(let i=0; i<nav_ls.length; i++)
       {
           if( nav_ls[i].id === mode_nav )
           {
-              let tit_val = nav_ls[i].tit;
-              let txt_val = nav_ls[i].txt;
+              const tit_val = nav_ls[i].tit;
+              const txt_val = nav_ls[i].txt;
               
-              content_area = <Create tit={tit_val} txt={txt_val} CreateMode={function(tit_v, txt_v){
-                  let nav_ls_val = {id:mode_nav_id, tit:tit_v, txt:txt_v};
+              Header_tit = "WEB"+" > "+ tit_val;
+              content_area = <Update tit={tit_val} txt={txt_val} UpdateMode={function(tit_v, txt_v){
                   let nav_ls_new = [...nav_ls];
-                  nav_ls_new.push(nav_ls_val);
+                  nav_ls_new[i] = {id:mode_nav, tit:tit_v, txt:txt_v};
+                  
                   setMode_nav_ls(nav_ls_new);
                   setMode_pg("Spg");
-                  setMode_nav(mode_nav_id);
-                  setMode_nav_id(mode_nav_id+1);
-                  // console.log(mode_nav_id, tit_v, txt_v);
-                  // console.log( nav_ls_val );
-              }}></Create>
+                  setMode_nav(mode_nav);
+                  //console.log(mode_nav_id, tit_v, txt_v);
+                  //console.log( nav_ls_val );
+            }}></Update>
           }
       }
   }
