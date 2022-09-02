@@ -46,8 +46,8 @@
 .nav li { display:inline-block; width:100px; height:auto; text-align:center; }
 
 .content_area { display:block; padding:0 20px 0 20px; box-sizing:border-box; border-bottom:1px solid #ececec;}
-.btn_area { display:block; width:100%; text-align:right; padding:20px; box-sizing:border-box;  }
-.btn_area .btn { padding:7px; border:1px solid #ddd;   }
+.btn_area { display:block; width:100%; text-align:right; padding:20px; box-sizing:border-box; }
+.btn_area .btn { display:inline-block; vertical-align:top; height:36px; padding:7px; border:1px solid #ddd; box-sizing:border-box; text-decoration:none; background:#fff; }
 
 .form_area { display:block; margin:0 auto; width:600px; /*border:1px solid #ddd;*/ }
 .form_area input { width:100%; padding:10px; border:1px solid #ddd; box-sizing:border-box;  }

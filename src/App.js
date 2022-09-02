@@ -120,6 +120,19 @@ function App() {
                         setMode_pg("Upg");
                     }}>Update</a>
 
+  let btn_delete = <button type="button" className="btn" onClick={function(){
+                        let nav_ls_new = [];
+                        //console.log('check1', mode_nav);
+                        for(let i=0; i<nav_ls.length; i++)
+                        {
+                            if( nav_ls[i].id !== mode_nav )
+                            {
+                               nav_ls_new.push(nav_ls[i]);
+                            }
+                        }
+                        setMode_nav_ls(nav_ls_new);
+                        setMode_pg("Mpg");
+                    }}>Delete</button>
 
 
   if( mode_pg === "Mpg" )
@@ -141,7 +154,7 @@ function App() {
           }
       }
       btn_area = <div className='btn_area'>
-                    {btn_create} {btn_update}
+                    {btn_create} {btn_update} {btn_delete}
                   </div>; 
   }
   else if( mode_pg === "Cpg")
