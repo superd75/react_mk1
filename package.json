@@ -1,5 +1,6 @@
 {
   "name": "react_mk2",
+  "homepage": "http://relation.co.kr/react_mk1",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
